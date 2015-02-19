@@ -4,7 +4,7 @@ Go Logging Library
 Use:
 ----
 
-```
+```go
 package main
 
 import (
