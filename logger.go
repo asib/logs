@@ -32,14 +32,14 @@ func (l *Logger) InfoFatalf(format string, v ...interface{}) {
 }
 
 func (l *Logger) WarningPrintln(v ...interface{}) {
-	if time.Since(l.Last) > l.Timeout {
+	if time.Since(l.Last) >= l.Timeout {
 		l.Warning.Println(v...)
 		l.Last = time.Now()
 	}
 }
 
 func (l *Logger) WarningPrintf(format string, v ...interface{}) {
-	if time.Since(l.Last) > l.Timeout {
+	if time.Since(l.Last) >= l.Timeout {
 		l.Warning.Printf(format, v...)
 		l.Last = time.Now()
 	}
@@ -54,14 +54,14 @@ func (l *Logger) WarningFatalf(format string, v ...interface{}) {
 }
 
 func (l *Logger) ErrorPrintln(v ...interface{}) {
-	if time.Since(l.Last) > l.Timeout {
+	if time.Since(l.Last) >= l.Timeout {
 		l.Error.Println(v...)
 		l.Last = time.Now()
 	}
 }
 
 func (l *Logger) ErrorPrintf(format string, v ...interface{}) {
-	if time.Since(l.Last) > l.Timeout {
+	if time.Since(l.Last) >= l.Timeout {
 		l.Error.Printf(format, v...)
 		l.Last = time.Now()
 	}
