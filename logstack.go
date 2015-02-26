@@ -31,6 +31,7 @@ func (ls *LogStack) Add(lvl LogLevel, msg string) {
 }
 
 func (ls *LogStack) PrintStack() {
+	ls.Logger.mu.Lock()
 	if time.Since(ls.Logger.Last) > ls.Logger.Timeout {
 		for _, log := range ls.Stack {
 			switch log.Level {
@@ -45,6 +46,7 @@ func (ls *LogStack) PrintStack() {
 		}
 		ls.Logger.Last = time.Now()
 	}
+	ls.Logger.mu.Unlock()
 	ls.Stack = make([]*LogMsg, 0)
 }
 
